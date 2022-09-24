@@ -12,7 +12,9 @@
 
  Другими словами: функция должна возвращать в неизменном виде то, что поступает ей на вход
  */
-function returnFirstArgument(value) {}
+function returnFirstArgument(value) {
+  return value;
+}
 
 /*
  Задание 2:
@@ -21,14 +23,17 @@ function returnFirstArgument(value) {}
 
  Пример:
    sumWithDefaults(10, 20) вернет 30
-   sumWithDefaults(2, 4) вернет 6
+   sumWithDefaults(2, 4) вернет 6  
 
  2.2 *: Значение по умолчанию для второго аргумента должно быть равно 100
 
  Пример:
    sumWithDefaults(10) вернет 110
  */
-function sumWithDefaults(a, b) {}
+
+function sumWithDefaults(b, a = 100) {
+  return a + b;
+}
 
 /*
  Задание 3:
@@ -38,7 +43,9 @@ function sumWithDefaults(a, b) {}
  Пример:
    returnFnResult(() => 'привет') вернет 'привет'
  */
-function returnFnResult(fn) {}
+function returnFnResult(fn) {
+  return fn();
+}
 
 /*
  Задание 4:
@@ -47,7 +54,7 @@ function returnFnResult(fn) {}
  При вызове функции F, переданное ранее число должно быть увеличено на единицу и возвращено из F
 
  Пример:
-   var f = returnCounter();
+   var f = returnCounter(); 
    console.log(f()); // выведет 1
    console.log(f()); // выведет 2
    
@@ -56,7 +63,11 @@ function returnFnResult(fn) {}
    console.log(f()); // выведет 12
    console.log(f()); // выведет 13
  */
-function returnCounter(number) {}
+function returnCounter(number = 0) {
+  return function F() {
+    return ++number;
+  };
+}
 
 /*
  Задание 5 *:
@@ -67,7 +78,9 @@ function returnCounter(number) {}
  Пример:
    returnArgumentsArray(1, 2, 3) вернет [1, 2, 3]
  */
-function returnArgumentsArray() {}
+function returnArgumentsArray(...args) {
+  return args;
+}
 
 /*
  Задание 6 *:
@@ -84,7 +97,9 @@ function returnArgumentsArray() {}
 
    console.log(newSum()) выведет 6
  */
-function bindFunction(fn, ...args) {}
+function bindFunction(fn, ...args) {
+  return fn.bind(null, ...args);
+}
 
 export {
   returnFirstArgument,
