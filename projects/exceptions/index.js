@@ -162,6 +162,7 @@ function calculator(number = 0) {
     },
   };
 }
+
 /* При решении задач, постарайтесь использовать отладчик */
 
 export { isAllTrue, isSomeTrue, returnBadArguments, calculator };
