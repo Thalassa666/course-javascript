@@ -33,10 +33,8 @@ function callAPI(method, params) {
 (async () => {
     try {
         await auth();
-        // const [me] = await callAPI('users.get', { name_case: 'gen'});
         const friends = await callAPI('friends.get', { fields: 'photo_100' });
         const template = document.querySelector('#friendTemplate').textContent;
-        // console.log(friends)
         const render = Handlebars.compile(template);
         const html = render(friends);
         const results = document.querySelector('#allFriends');
@@ -48,9 +46,7 @@ function callAPI(method, params) {
     }
 })();
 
-// при mousedown на друга вешается draggable true.
-// Зачем? Почему не прописать инлайном в темплейте? -потому что так солиднее,
-// так практичнее и без лишних данных в самом html
+
 document.addEventListener('mousedown', (e) => {
     if (e.target.tagName === 'HTML') {
         return;
@@ -62,24 +58,20 @@ document.addEventListener('mousedown', (e) => {
     isAllFriendsGranddad && (e.target.parentElement.draggable = true);
 });
 
-// Просто ховер эффект при перетаскивании
 document.addEventListener('dragenter', (e) => {
     e.target.classList.contains('friends__list') && e.target.classList.add('drop');
 });
 
-// удаление ховер эффекта
 document.addEventListener('dragleave', (e) => {
     e.target.classList.contains('drop') && e.target.classList.remove('drop');
 });
 
-// при старте записывает дата-айди
 document.addEventListener('dragstart', (e) => {
     e.target.classList.contains('friend') && e.dataTransfer.setData("text/plain", e.target.dataset.id);
 });
 
 let elemBelow = "";
 
-// Дропать можно либо на друга, либо в список друзей
 document.addEventListener('dragover', (e) => {
     e.target.classList.contains('friend') && e.preventDefault();
     e.target.classList.contains('friends__list') && e.preventDefault();
@@ -91,7 +83,6 @@ document.addEventListener('drop', (e) => {
         `[data-id="${e.dataTransfer.getData("text/plain")}"]`
     );
 
-    // ?
     if (elemBelow === element) {
         elemBelow.removeAttribute('draggable');
         return;
@@ -145,8 +136,6 @@ document.addEventListener('click', (e) => {
 const friendSearch = document.querySelector('#friendSearch');
 const bestFriendSearch = document.querySelector('#bestFriendSearch');
 
-// Следующие 2 слушателя убирают возможность перемещать текст в инпутах
-// Ибо этот текст можно было перемещать в drop зону
 friendSearch.addEventListener('dragstart', (e) => {
     e.preventDefault();
 });
@@ -158,19 +147,16 @@ bestFriendSearch.addEventListener('dragstart', (e) => {
    e.preventDefault();
 });
 
-// фильтрация обычных друзей
 friendSearch.addEventListener('input', () => {
     const friendList = allFriends.children;
     filterFriends(friendList, friendSearch);
 });
 
-// фильтрация лучших друзей
 bestFriendSearch.addEventListener('input', () => {
     const friendList = allBestFriends.children;
     filterFriends(friendList, bestFriendSearch);
 });
 
-// сама фильтрация
 function filterFriends(friends, search) {
     if (!friends.length) {
         return;
