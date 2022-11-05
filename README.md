@@ -10,8 +10,8 @@
 ## Установка
 `npm install`
 
-## Запуск сервера
-`node server/index.js`
+## Запуск 
+`npm start`
 
 ## Для разработки 
 `npm run dev`
