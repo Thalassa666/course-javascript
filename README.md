@@ -11,7 +11,8 @@
 `npm install`
 
 ## Запуск 
-`npm start`
+`cd projects/mega-chat-3 && npm start`  
+`cd projects/server && node index.js`
 
 ## Для разработки 
 `npm run dev`
