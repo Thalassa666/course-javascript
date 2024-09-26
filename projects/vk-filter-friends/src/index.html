@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VK-Filter-Friends</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+    <script src="https://vk.com/js/api/openapi.js?169" type="text/javascript"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@500&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div class="window">
+        <div class="choose-friends">
+            <h1 class="choose-friends__title">Выберите друзей</h1>
+        </div>
+        <div class="filter-container">
+            <form id="form">
+                <label for="friendSearch"></label>
+                <input type="text" id="friendSearch" placeholder="Начните вводить имя друга" autocomplete="off">
+                <label for="bestFriendSearch"></label>
+                <input type="text" id="bestFriendSearch" placeholder="Имя лучшего друга" autocomplete="off">
+            </form>
+
+           <div class="friends-container waiting">
+               <div class="friends">
+                   <h3 class="friends__title">Ваши друзья</h3>
+                   <ul id="allFriends" class="friends__list">
+                   </ul>
+               </div>
+
+               <div class="best-friends">
+                   <h3 class="friends__title">Лучшие друзья</h3>
+                   <ul id="allBestFriends" class="friends__list">
+                   </ul>
+               </div>
+           </div>
+        </div>
+        <div class="bottom-block"></div>
+    </div>
+
+</div>
+
+<script id="friendTemplate" type="text/x-handlebars-template">
+    {{#each items}}
+        <li class="friend" data-id="{{id}}">
+            <img src="{{photo_100}}" alt="avatar" class="friend__img">
+            <h4 class="friend__name">{{first_name}} {{last_name}}</h4>
+            <div class="arrow toBestFriend"></div>
+        </li>
+    {{/each}}
+</script>
+
+</body>
+</html>
